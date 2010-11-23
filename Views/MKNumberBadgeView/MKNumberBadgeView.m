@@ -107,7 +107,7 @@
 	CGSize numberSize = [numberString sizeWithFont:self.font];
 		
 	CGPathRef badgePath = [self createBadgePathForTextSize:numberSize];
-	
+	CGPathRetain(badgePath);
 	CGRect badgeRect = CGPathGetBoundingBox(badgePath);
 	
 	badgeRect.origin.x = 0;
@@ -206,6 +206,7 @@
 		
 	}
 	CGContextRestoreGState( curContext );
+
 	CGPathRelease(badgePath);
 	
 	CGContextSaveGState( curContext );
@@ -232,10 +233,6 @@
 	if ( badgeWidthAdjustment > 0.0 )
 	{
 		badgeWidth += badgeWidthAdjustment;
-	}
-	else
-	{
-		badgeWidthAdjustment = 0;
 	}
 	
 	
@@ -276,7 +273,7 @@
 	badgeRect.size.width = ceil( badgeRect.size.width );
 	badgeRect.size.height = ceil( badgeRect.size.height );
 	
-	CGPathRelease(badgePath);
+//	CGPathRelease(badgePath);
 	
 	return badgeRect.size;
 }
