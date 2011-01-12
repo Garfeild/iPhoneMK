@@ -244,8 +244,7 @@
 	CGPathAddArc( badgePath, NULL, badgeWidth-arcRadius, arcRadius, arcRadius, kPi/2.0, 3.0*kPi/2.0, YES);
 	CGPathAddLineToPoint( badgePath, NULL, arcRadius, 0 );
 	
-	return badgePath;
-	
+	return (CGPathRef)[(NSObject*)badgePath autorelease];
 }
 
 #pragma mark -- property methods --
@@ -272,9 +271,7 @@
 	badgeRect.origin.y = 0;
 	badgeRect.size.width = ceil( badgeRect.size.width );
 	badgeRect.size.height = ceil( badgeRect.size.height );
-	
-//	CGPathRelease(badgePath);
-	
+		
 	return badgeRect.size;
 }
 
